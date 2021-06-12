@@ -1,0 +1,38 @@
+header {
+    padding: 5px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color:whitesmoke;
+    background: linear-gradient(90deg,rgb(59, 82, 216) 0%, rgb(72, 18, 109) 100%);
+}
+
+h1 {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.container {
+    padding-top: 8px;
+}
+
+#searchCity {
+    width: 100%;
+    height:35px;
+}
+
+.btn-primary{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 30px;
+}
+
+.btn {
+    padding: 0;
+}
+
+#leftBlock {
+    border-bottom: rgb(70, 68, 68) 1px solid;
+    padding: 0;
+}
