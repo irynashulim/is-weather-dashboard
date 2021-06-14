@@ -22,7 +22,7 @@
         <div class="col-12" id="leftBlock">
     <h1>Search for a City:</h1>
     <input type="text" id="searchCity" placeholder="Enter city"/>
-<button class="btn btn-primary" type="button">Search</button>
+<button class="btn btn-primary" type="button" onclick="myFunction()">Search</button>
 </div>
 <div class="col-12" id="savedSearch"> 
 </div>
@@ -30,6 +30,15 @@
 </div>
 <!--right side-->
 <div class="col-9">
+    <div class="row">
+        <!--top block with weather info-->
+        <div class="col-12" id="weather-info"></div>
+        <!--bottom block with 5 days forcast-->
+        <div></div>
+
+
+
+    </div>
 </div>
 </div>
 
@@ -39,7 +48,11 @@
 
         </div>
     </main>
-<script src="/assets/js/script.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+      crossorigin="anonymous"></script>
+<script src="assets/js/script.js"></script>
 </body>
 
 </html>
