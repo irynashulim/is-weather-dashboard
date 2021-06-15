@@ -1,5 +1,5 @@
 
-    var myFunction = function () {
+    var weatherFetch = function (searchCity) {
         var searchCity = document.querySelector("#searchCity");
         var searchCity = searchCity.value;
 
@@ -26,11 +26,10 @@ fetch ("https://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&uni
     "<p>" + "Wind: " + wind + " MPH" + "</p>" + 
     "<p>" + "Humidity: " + humidity + " %" + "</p>" + 
     "<p>" + "UV Index: " + uvIndex + "</p>";
-    searchCity.value = " ";
-
+    
 
 });
-// rigth bottom 5 day weather
+// rigth bottom 5 day weather block
 fetch ("https://api.openweathermap.org/data/2.5/forecast?q=" + searchCity + "&units=imperial&exclude=current&appid=14cdabdb32efcde0130d8641f715b866")
 .then(function(fiveDayResponse) {
     return fiveDayResponse.json();
@@ -107,9 +106,37 @@ fetch ("https://api.openweathermap.org/data/2.5/forecast?q=" + searchCity + "&un
     "<p>" + "Temp: " + tempFive + " F" + "</p>" + 
     "<p>" + "Wind: " + windFive + " MPH" + "</p>" + 
     "<p>" + "Humidity: " + humidityFive + " %" + "</p>"
-
-})
+});
+//setting local storage
+var cityList = JSON.parse(localStorage.getItem("city-list")) || [];
+function renderCity(cityList) {
+    $("#saved-search").empty();
+    for (var i = 0; i < cityList.length; i++) {
+        var cityEl = $("<button>");
+        cityEl.text(cityList[i]);
+        cityEl.addClass("saved-city-btn");
+        $("#saved-search").append(cityEl);
+    }
+}
+$("#add-city").on("click", function(event) {
+    event.preventDefault();
+    cityList.push(searchCity)
+    console.log(cityList);
+    for (i = 0; i<cityList.length; i++) {
+        var inputCity = cityList[i];
     };
+    renderCity(cityList);
+    var savedCity = JSON.stringify(cityList);
+    localStorage.setItem("city-list", savedCity);
+    $("#searchCity").val("");
+});
+var savedCity = document.querySelector(".seved-city-btn");
+savedCity.onClick = weatherFetch();
+
+
+};
+
+
 
 
 
