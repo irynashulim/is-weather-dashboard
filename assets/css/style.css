@@ -36,3 +36,16 @@ h1 {
     border-bottom: rgb(70, 68, 68) 1px solid;
     padding: 0;
 }
+
+.fivedaystyle {
+    background: linear-gradient(90deg,rgb(59, 82, 216) 0%, rgb(72, 18, 109) 100%);
+    color: white;
+}
+
+.fivedaystyle h3 {
+    font-size: 16px;
+}
+
+.fivedaystyle p {
+    font-size: 10px;
+}
