@@ -1,41 +1,36 @@
-
+var searchCity = document.querySelector("#searchCity"); 
+var weatherInfo = document.querySelector("#weather-info");
+// weatherFetch function for top right block
     var weatherFetch = function (searchCity) {
-        var searchCity = document.querySelector("#searchCity");
-        var searchCity = searchCity.value;
-
-fetch ("https://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&units=imperial&exclude=current&APPID=14cdabdb32efcde0130d8641f715b866")
-.then(function(response) {
-    return response.json();
-})
-.then(function(response) {
-    console.log(response);
-
-  
-    var cityName = response.name;
+        var cityName = response.name;
     var icon = response.weather[0].icon;
     var iconImg = "https://openweathermap.org/img/wn/" + icon + "@2x.png"
     var temp = response.main.temp;
     var humidity = response.main.humidity;
     var wind = response.wind.speed;
-    var uvIndex = response;
-
-    var weatherInfo = document.querySelector("#weather-info");
+   // var uvIndex = response;
+    var searchCity = searchCity.value;
+fetch ("https://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&units=imperial&exclude=current&APPID=14cdabdb32efcde0130d8641f715b866")
+.then(function(response) {
+    return response.json();
+})
+.then(function(response) {
     weatherInfo.innerHTML = " ";
     weatherInfo.innerHTML = "<h2>" + cityName + " "+ "<img src=" + iconImg + ">" + "</h2>" + 
     "<p>" + "Temp: " + temp + " F" + "</p>" + 
     "<p>" + "Wind: " + wind + " MPH" + "</p>" + 
     "<p>" + "Humidity: " + humidity + " %" + "</p>" + 
     "<p>" + "UV Index: " + uvIndex + "</p>";
-    
-
 });
-// rigth bottom 5 day weather block
+};
+
+// fiveDayFetch function for bottom right block
+var fiveDayFetch = function(searchCity) {
 fetch ("https://api.openweathermap.org/data/2.5/forecast?q=" + searchCity + "&units=imperial&exclude=current&appid=14cdabdb32efcde0130d8641f715b866")
 .then(function(fiveDayResponse) {
     return fiveDayResponse.json();
 })
 .then(function(fiveDayResponse) {
-    console.log(fiveDayResponse);
 // day One
     var dayOne = document.querySelector("#day-one");
     var dateOne = fiveDayResponse.list[4].dt_txt;
@@ -107,6 +102,9 @@ fetch ("https://api.openweathermap.org/data/2.5/forecast?q=" + searchCity + "&un
     "<p>" + "Wind: " + windFive + " MPH" + "</p>" + 
     "<p>" + "Humidity: " + humidityFive + " %" + "</p>"
 });
+};
+
+
 //setting local storage
 var cityList = JSON.parse(localStorage.getItem("city-list")) || [];
 function renderCity(cityList) {
@@ -130,11 +128,6 @@ $("#add-city").on("click", function(event) {
     localStorage.setItem("city-list", savedCity);
     $("#searchCity").val("");
 });
-var savedCity = document.querySelector(".seved-city-btn");
-savedCity.onClick = weatherFetch();
-
-
-};
 
 
 
