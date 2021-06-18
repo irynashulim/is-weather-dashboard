@@ -9,6 +9,11 @@ header {
 h2 {
     padding-left: 10px;
 }
+
+.m-2 p {
+    padding-left: 10px;
+}
+
 .form-label {
     font-size: 22px;
     font-weight: bold;
@@ -43,7 +48,4 @@ h2 {
 
 .btn-secondary {
     color: black;
-}
-.m-2 p {
-    padding-left: 10px;
 }
