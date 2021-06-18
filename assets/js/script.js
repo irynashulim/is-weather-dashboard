@@ -1,14 +1,29 @@
 var searchCity = document.querySelector("#searchCity"); 
 var weatherInfo = document.querySelector("#weather-info");
+var cityListEl = document.querySelector(".city-list");
 // weatherFetch function for top right block
     var weatherFetch = function (searchCity) {
+    var citySearches = [] {
+        var citySearches = [];
+        if (searchCity,value) {
+            citySearches.push(searchCity.value);
+        }
+        var storedCity = localStorage.getItem("citylist")
+        if (storedCity) {
+            citySearches = citySearches.concat(JSON.parse(storedCity));
+            citySearches = citySearches.slice(0, 10);
+        }
+        localStorage.setItem('citylist', JSON.stringify(citySearches))
+        $(cityListEl).empty();
+        for (var i = 0; i < citySearches.length; i++) {
+    }
         var cityName = response.name;
     var icon = response.weather[0].icon;
     var iconImg = "https://openweathermap.org/img/wn/" + icon + "@2x.png"
     var temp = response.main.temp;
     var humidity = response.main.humidity;
     var wind = response.wind.speed;
-   // var uvIndex = response;
+   var uvIndex = response;
     var searchCity = searchCity.value;
 fetch ("https://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&units=imperial&exclude=current&APPID=14cdabdb32efcde0130d8641f715b866")
 .then(function(response) {
@@ -17,7 +32,7 @@ fetch ("https://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&uni
 .then(function(response) {
     weatherInfo.innerHTML = " ";
     weatherInfo.innerHTML = "<h2>" + cityName + " "+ "<img src=" + iconImg + ">" + "</h2>" + 
-    "<p>" + "Temp: " + temp + " F" + "</p>" + 
+    "<p>" + "Temp: " + temp + " °F" + "</p>" + 
     "<p>" + "Wind: " + wind + " MPH" + "</p>" + 
     "<p>" + "Humidity: " + humidity + " %" + "</p>" + 
     "<p>" + "UV Index: " + uvIndex + "</p>";
@@ -42,7 +57,7 @@ fetch ("https://api.openweathermap.org/data/2.5/forecast?q=" + searchCity + "&un
 
     dayOne.innerHTML = " ";
     dayOne.innerHTML = "<h3>" + dateOne+ " "+ "<img src=" + iconImgOne + ">" + "</h3>" + 
-    "<p>" + "Temp: " + tempOne + " F" + "</p>" + 
+    "<p>" + "Temp: " + tempOne + " °F" + "</p>" + 
     "<p>" + "Wind: " + windOne + " MPH" + "</p>" + 
     "<p>" + "Humidity: " + humidityOne + " %" + "</p>"
 // day Two
@@ -56,7 +71,7 @@ fetch ("https://api.openweathermap.org/data/2.5/forecast?q=" + searchCity + "&un
 
     dayTwo.innerHTML = " ";
     dayTwo.innerHTML = "<h3>" + dateTwo+ " "+ "<img src=" + iconImgTwo + ">" + "</h3>" + 
-    "<p>" + "Temp: " + tempTwo + " F" + "</p>" + 
+    "<p>" + "Temp: " + tempTwo + " °F" + "</p>" + 
     "<p>" + "Wind: " + windTwo + " MPH" + "</p>" + 
     "<p>" + "Humidity: " + humidityTwo + " %" + "</p>"
 // day Three
@@ -70,7 +85,7 @@ fetch ("https://api.openweathermap.org/data/2.5/forecast?q=" + searchCity + "&un
 
     dayThree.innerHTML = " ";
     dayThree.innerHTML = "<h3>" + dateThree+ " "+ "<img src=" + iconImgThree + ">" + "</h3>" + 
-    "<p>" + "Temp: " + tempThree + " F" + "</p>" + 
+    "<p>" + "Temp: " + tempThree + " °F" + "</p>" + 
     "<p>" + "Wind: " + windThree + " MPH" + "</p>" + 
     "<p>" + "Humidity: " + humidityThree + " %" + "</p>"
 // day Four
@@ -84,7 +99,7 @@ fetch ("https://api.openweathermap.org/data/2.5/forecast?q=" + searchCity + "&un
 
     dayFour.innerHTML = " ";
     dayFour.innerHTML = "<h3>" + dateFour+ " "+ "<img src=" + iconImgFour + ">" + "</h3>" + 
-    "<p>" + "Temp: " + tempFour + " F" + "</p>" + 
+    "<p>" + "Temp: " + tempFour + " °F" + "</p>" + 
     "<p>" + "Wind: " + windFour + " MPH" + "</p>" + 
     "<p>" + "Humidity: " + humidityFour + " %" + "</p>"
 // day Five
@@ -98,7 +113,7 @@ fetch ("https://api.openweathermap.org/data/2.5/forecast?q=" + searchCity + "&un
 
     dayFive.innerHTML = " ";
     dayFive.innerHTML = "<h3>" + dateFive+ " "+ "<img src=" + iconImgFive + ">" + "</h3>" + 
-    "<p>" + "Temp: " + tempFive + " F" + "</p>" + 
+    "<p>" + "Temp: " + tempFive + " °F" + "</p>" + 
     "<p>" + "Wind: " + windFive + " MPH" + "</p>" + 
     "<p>" + "Humidity: " + humidityFive + " %" + "</p>"
 });
